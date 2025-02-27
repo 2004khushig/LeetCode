@@ -1,21 +1,21 @@
 class Solution {
     public List<String> fizzBuzz(int n) {
-        ArrayList<String>list=new ArrayList<>();
+        ArrayList<String>ans=new ArrayList<>();
         for(int i=1;i<=n;i++){
             if(i%3==0 && i%5==0){
-                list.add("FizzBuzz");
+                ans.add("FizzBuzz");
             }
             else if(i%3==0){
-                list.add("Fizz");
+                ans.add("Fizz");
             }
             else if(i%5==0){
-                list.add("Buzz");
+                ans.add("Buzz");
             }
             else{
-                list.add(Integer.toString(i));
+                ans.add(Integer.toString(i));
             }
         }
-        return list;
+        return ans;
         
     }
 }
