@@ -9,26 +9,21 @@
  * }
  */
 class Solution {
-    public ListNode mergeTwoLists(ListNode first, ListNode second) {
-        ListNode dummy=new ListNode(-1);
-        ListNode current=dummy;
-        while(first!=null && second!=null){
-            if(first.val<=second.val){
-                current.next=first;
-                first=first.next;
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy=new ListNode();
+        ListNode curr=dummy;
+        while(list1!=null && list2!=null){
+            if(list1.val>list2.val){
+                curr.next=list2;
+                list2=list2.next;
             }
             else{
-                current.next=second;
-                second=second.next;
+                curr.next=list1;
+                list1=list1.next;
             }
-            current=current.next;
+            curr=curr.next;
         }
-        if(first!=null){
-            current.next=first;
-        }
-        if(second!=null){
-            current.next=second;
-        }
+        curr.next=(list1!=null)?list1:list2;
         return dummy.next;
     }
 }
