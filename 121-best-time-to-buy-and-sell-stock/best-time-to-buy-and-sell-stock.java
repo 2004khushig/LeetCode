@@ -10,7 +10,6 @@ class Solution {
                 profit=prices[i]-buy;
             }
         }
-        return profit;
-        
+        return profit;       
     }
 }
