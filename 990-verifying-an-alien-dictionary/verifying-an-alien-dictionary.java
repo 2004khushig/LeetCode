@@ -1,25 +1,33 @@
 class Solution {
     public boolean isAlienSorted(String[] W, String O) {
-        Map<Character,Integer> order = new HashMap<>();
-        for (int i = 0; i < O.length(); i++)
-            order.put(O.charAt(i), i);
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < O.length(); i++) {
+            map.put(O.charAt(i), i);
+        }
+
         for (int i = 1; i < W.length; i++) {
-            String a = W[i-1];
+            String a = W[i - 1];
             String b = W[i];
-            for (int j = 0; j < a.length(); j++) {
-                if (j == b.length()){
-                    return false;
-                }
-                char cha = a.charAt(j);
-                char chb = b.charAt(j);
-                if (order.get(cha) < order.get(chb)){
+            int len = Math.min(a.length(), b.length());
+            boolean isSorted = false;
+
+            for (int j = 0; j < len; j++) {
+                char charA = a.charAt(j);
+                char charB = b.charAt(j);
+
+                if (map.get(charA) < map.get(charB)) {
+                    isSorted = true;
                     break;
-                }
-                if (order.get(cha) > order.get(chb)){
+                } else if (map.get(charA) > map.get(charB)) {
                     return false;
                 }
             }
+
+            if (!isSorted && a.length() > b.length()) {
+                return false;
+            }
         }
+
         return true;
     }
 }
