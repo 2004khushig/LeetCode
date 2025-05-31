@@ -13,15 +13,15 @@ class Solution {
             return;
         }
         for(int i=n-1;i>pivot;i--){
-            if(nums[pivot]<nums[i]){
-                int swap=nums[pivot];
-                nums[pivot]=nums[i];
-                nums[i]=swap;
+            if(nums[i]>nums[pivot]){
+                int temp=nums[i];
+                nums[i]=nums[pivot];
+                nums[pivot]=temp;
                 break;
             }
         }
         reverse(nums,pivot+1,n-1);
-
+        
     }
     public void reverse(int nums[],int s,int e){
         while(s<e){
