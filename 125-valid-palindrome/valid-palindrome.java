@@ -3,27 +3,26 @@ class Solution {
        if(s.isEmpty()){
         return true;
        }
-       int st=0;
+       int start=0;
        int end=s.length()-1;
-       while(st<=end){
-        char sta=s.charAt(st);
-        char e=s.charAt(end);
-        if(!Character.isLetterOrDigit(sta)){
-            st++;
+       while(start<=end){
+        char startA=s.charAt(start);
+        char endA=s.charAt(end);
+        if(!Character.isLetterOrDigit(startA)){
+            start++;
         }
-        else if(!Character.isLetterOrDigit(e)){
+        else if(!Character.isLetterOrDigit(endA)){
             end--;
         }
         else{
-            if(Character.toLowerCase(sta)!=Character.toLowerCase(e)){
+            if(Character.toLowerCase(startA)!=Character.toLowerCase(endA)){
                 return false;
             }
-            st++;
+            start++;
             end--;
         }
 
        }
        return true;
-
     }
 }
