@@ -19,24 +19,24 @@ class Solution {
         if(root==null){
             return result;
         }
-        Queue<TreeNode> queue=new LinkedList<>();
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            int levelSize=queue.size();
-            List<Integer>currentLevel=new ArrayList<>(levelSize);
-            for(int i=0;i<levelSize;i++){
-                TreeNode currNode=queue.poll();
-                currentLevel.add(currNode.val);
-                if(currNode.left!=null){
-                    queue.offer(currNode.left);
+        Queue<TreeNode>q=new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int level=q.size();
+            List<Integer>curr=new ArrayList<>();
+            for(int i=0;i<level;i++){
+                TreeNode c=q.poll();
+                curr.add(c.val);
+                if(c.left!=null){
+                    q.offer(c.left);
                 }
-                if(currNode.right!=null){
-                    queue.offer(currNode.right);
+                if(c.right!=null){
+                    q.offer(c.right);
                 }
             }
-            result.add(currentLevel);
+            result.add(curr);
         }
-
         return result;
+
     }
 }
