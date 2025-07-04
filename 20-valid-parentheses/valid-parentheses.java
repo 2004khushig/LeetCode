@@ -11,15 +11,15 @@ class Solution {
                 if (st.isEmpty()) {
                     return false;
                 }
-                if ((c == ')' && st.peek() != '(') ||
-                    (c == ']' && st.peek() != '[') ||
-                    (c == '}' && st.peek() != '{')) {
+                char top = st.pop(); // pop once and compare
+                if ((c == ')' && top != '(') ||
+                    (c == ']' && top != '[') ||
+                    (c == '}' && top != '{')) {
                     return false;
                 }
-                st.pop();
             }
         }
 
-        return st.isEmpty();
+        return st.isEmpty(); 
     }
 }
