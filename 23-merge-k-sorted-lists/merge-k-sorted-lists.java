@@ -10,24 +10,20 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) {
-            return null;
-        }
-        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
-        for (ListNode node : lists) {
-            if (node != null) {
-                minHeap.offer(node);
+         PriorityQueue<ListNode>heap=new PriorityQueue<>(
+            (a,b)->Integer.compare(a.val,b.val));
+        for(ListNode n:lists){
+            if(n!=null){
+                heap.offer(n);
             }
         }
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while(!minHeap.isEmpty()){
-            ListNode smallest=minHeap.poll();
-            tail.next=smallest;
+        ListNode dummy=new ListNode(0);
+        ListNode tail=dummy;
+        while(!heap.isEmpty()){
+            ListNode curr=heap.poll();
+            tail.next=curr;
             tail=tail.next;
-            if(smallest.next!=null){
-                minHeap.offer(smallest.next);
-            }
+            if(curr.next!=null)heap.offer(curr.next);
         }
         return dummy.next;
     }
