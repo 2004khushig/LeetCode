@@ -1,35 +1,35 @@
 class Solution {
-    public boolean canFinish(int n, int[][] prereq) {
-        List<Integer>[] adj=new List[n];
-        int[]indegree=new int[n];
-        List<Integer>ans=new ArrayList<>();
-        for(int[]pair:prereq){
+    public boolean canFinish(int n, int[][] prerequisites) {
+        List<Integer>[] adj = new List[n];
+        int[] indegree = new int[n];
+        List<Integer> ans = new ArrayList<>();
+        for(int[]pair:prerequisites){
             int course=pair[0];
-            int pre=pair[1];
-            if(adj[pre]==null){
-                adj[pre]=new ArrayList<>();
+            int prerequisite=pair[1];
+            if(adj[prerequisite]==null){
+                adj[prerequisite]=new ArrayList<>();
             }
-            adj[pre].add(course);
+            adj[prerequisite].add(course);
             indegree[course]++;
         }
-        Queue<Integer>queue=new LinkedList<>();
+        Queue<Integer>q=new LinkedList<>();
         for(int i=0;i<n;i++){
             if(indegree[i]==0){
-                queue.offer(i);
+                q.offer(i);
             }
         }
-        while(!queue.isEmpty()){
-            int current=queue.poll();
-            ans.add(current);
-            if(adj[current]!=null){
-                for(int next:adj[current]){
+        while(!q.isEmpty()){
+            int curr=q.poll();
+            ans.add(curr);
+            if(adj[curr]!=null){
+                for(int next:adj[curr]){
                     indegree[next]--;
                     if(indegree[next]==0){
-                    queue.offer(next);
+                        q.offer(next);
                     }
                 }
             }
         }
-        return ans.size()==n;
+        return ans.size() == n;
     }
 }
