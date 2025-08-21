@@ -15,48 +15,42 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>>result=new ArrayList<>();
+        ArrayList<List<Integer>>ans=new ArrayList<>();
         if(root==null){
-            return result;
+            return ans;
         }
-        Deque<TreeNode> queue=new LinkedList<>();
-        queue.offer(root);
+        Deque<TreeNode>dq=new LinkedList<>();
+        dq.offer(root);
         boolean reverse=false;
-        while(!queue.isEmpty()){
-            int levelSize=queue.size();
-            List<Integer>currentLevel=new ArrayList<>(levelSize);
-            for(int i=0;i<levelSize;i++){
+        while(!dq.isEmpty()){
+            int levelS=dq.size();
+            ArrayList<Integer>list=new ArrayList<>();
+            for(int i=0;i<levelS;i++){
                 if(!reverse){
-                    TreeNode currNode=queue.pollFirst();
-                    currentLevel.add(currNode.val);
-                    if(currNode.left!=null){
-                        queue.addLast(currNode.left);
+                    TreeNode curr=dq.pollFirst();
+                    list.add(curr.val);
+                    if(curr.left!=null){
+                        dq.addLast(curr.left);
                     }
-                    if(currNode.right!=null){
-                        queue.addLast(currNode.right);
+                    if(curr.right!=null){
+                        dq.addLast(curr.right);
                     }
-
                 }
                 else{
-                    TreeNode currNode=queue.pollLast();
-                    currentLevel.add(currNode.val);
-
-                    if(currNode.right!=null){
-                        queue.addFirst(currNode.right);
+                    TreeNode curr=dq.pollLast();
+                    list.add(curr.val);
+                    if(curr.right!=null){
+                        dq.addFirst(curr.right);
                     }
-                    if(currNode.left!=null){
-                        queue.addFirst(currNode.left);
+                    if(curr.left!=null){
+                        dq.addFirst(curr.left);
                     }
-
+                
                 }
-
-
             }
             reverse=!reverse;
-            result.add(currentLevel);
+            ans.add(list);
         }
-
-        return result;
-
+        return ans;
     }
 }
