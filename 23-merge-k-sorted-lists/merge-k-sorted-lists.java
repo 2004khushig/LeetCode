@@ -10,21 +10,19 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-         PriorityQueue<ListNode>heap=new PriorityQueue<>(
-            (a,b)->Integer.compare(a.val,b.val));
+        PriorityQueue<ListNode>pq=new PriorityQueue<>((a,b)->Integer.compare(a.val,b.val));
         for(ListNode n:lists){
-            if(n!=null){
-                heap.offer(n);
-            }
+            if(n!=null) pq.offer(n);
         }
-        ListNode dummy=new ListNode(0);
+        ListNode dummy=new ListNode();
         ListNode tail=dummy;
-        while(!heap.isEmpty()){
-            ListNode curr=heap.poll();
+        while(!pq.isEmpty()){
+            ListNode curr=pq.poll();
             tail.next=curr;
             tail=tail.next;
-            if(curr.next!=null)heap.offer(curr.next);
+            if(curr.next!=null)pq.offer(curr.next);
         }
         return dummy.next;
+
     }
 }
