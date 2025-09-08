@@ -16,6 +16,7 @@ class Solution {
             len++;
             temp=temp.next;
         }
+
         if(n==len){
             return head.next;
         }
@@ -27,5 +28,7 @@ class Solution {
             temp.next=temp.next.next;
         }
         return head;
+        
+
     }
 }
