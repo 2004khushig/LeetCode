@@ -9,11 +9,11 @@ class Solution {
             return;
         }
         int j=nums.length-1;
-        while(j>=i && nums[j]<=nums[i-1]){
+        while(j>=i && nums[i-1]>=nums[j]){
             j--;
         }
-        swap(nums, i-1, j);
-        reverse(nums, i, nums.length-1);
+        swap(nums,i-1,j);
+        reverse(nums,i,nums.length-1);
     }
     private void swap(int[] nums, int i, int j) {
         int temp = nums[i];
