@@ -19,6 +19,5 @@ class Solution {
             result.append(ch);
         }
         return result.toString();
-
     }
 }
