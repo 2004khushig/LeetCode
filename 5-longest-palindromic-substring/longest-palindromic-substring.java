@@ -6,22 +6,24 @@ class Solution {
 
         int start = 0;
         int end = 0;
-        for(int i=0;i<s.length();i++){
-            int odd=expandAroundCorner(s,i,i);
-            int even=expandAroundCorner(s,i,i+1);
-            int max_len=Math.max(odd,even);
-            if(max_len>end-start){
-                start=i-(max_len-1)/2;
-                end=i+max_len/2;
+
+        for (int i = 0; i < s.length(); i++){
+            int odd=helper(s,i,i);
+            int even=helper(s,i,i+1);
+            int max=Math.max(odd,even);
+            if(max>end-start){
+                start=i-(max-1)/2;
+                end=i+max/2;
             }
+
         }
-        return s.substring(start, end + 1); 
+        return s.substring(start,end+1);
     }
-    private int expandAroundCorner(String s, int left, int right) {
+    private int helper(String s, int left, int right) {
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
         }
         return right - left - 1;
-    }  
+    }    
 }
