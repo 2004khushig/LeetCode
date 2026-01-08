@@ -1,27 +1,32 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        List<String> ans = new ArrayList<>();
-        if (digits.length() == 0) {
-            return ans;
+        List<String> res = new ArrayList<>();
+        
+        if (digits == null || digits.length() == 0) {
+            return res;
         }
-
-        String[] mapping = {
-            "", "", "abc", "def", "ghi", "jkl",
-            "mno", "pqrs", "tuv", "wxyz"
-        };
-
-        solve(digits, "", 0, ans, mapping);
-        return ans;
+        Map<Character, String> digitToLetters = new HashMap<>();
+        digitToLetters.put('2', "abc");
+        digitToLetters.put('3', "def");
+        digitToLetters.put('4', "ghi");
+        digitToLetters.put('5', "jkl");
+        digitToLetters.put('6', "mno");
+        digitToLetters.put('7', "pqrs");
+        digitToLetters.put('8', "tuv");
+        digitToLetters.put('9', "wxyz");
+        backtrack(digits, 0, new StringBuilder(), res, digitToLetters);
+        return res;
     }
-    private void solve(String digits, String output, int i, List<String> ans, String[] mapping){
-        if(i==digits.length()){
-            ans.add(output);
+    private void backtrack(String digits, int idx, StringBuilder comb, List<String> res, Map<Character, String> digitToLetters){
+        if(idx==digits.length()){
+            res.add(comb.toString());
             return;
         }
-        int num=digits.charAt(i)-'0';
-        String value=mapping[num];
-        for(int j=0;j<value.length();j++){
-            solve(digits,output+value.charAt(j),i+1,ans,mapping);
+        String letters=digitToLetters.get(digits.charAt(idx));
+        for(char l:letters.toCharArray()){
+            comb.append(l);
+            backtrack(digits, idx + 1, comb, res, digitToLetters);
+            comb.deleteCharAt(comb.length() - 1);
         }
     }
 }
