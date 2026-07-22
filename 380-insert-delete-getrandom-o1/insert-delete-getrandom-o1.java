@@ -5,20 +5,18 @@ class RandomizedSet {
     public RandomizedSet() {
         list = new ArrayList<>();
         map = new HashMap<>();
-        
     }
-     public boolean search(int val) {
+    public boolean search(int val) {
         return map.containsKey(val);
     }
     
     public boolean insert(int val) {
-        if(search(val)){
-            return false;
-        }
+        if(search(val)) return false;
+
         list.add(val);
-        map.put(val,list.size()-1);
+        map.put(val, list.size() - 1);
         return true;
-        
+
     }
     
     public boolean remove(int val) {
@@ -37,7 +35,6 @@ class RandomizedSet {
     public int getRandom() {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
-        
     }
 }
 
